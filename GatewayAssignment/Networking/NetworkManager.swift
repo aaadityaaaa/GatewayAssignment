@@ -37,13 +37,6 @@ class NetworkManager {
             } else {
                 print("json data malformed")
             }
-            
-//            guard let convertedString = String(data: data, encoding: .utf8) else {
-//                completed(.failure(.invalidData))
-//                return
-//            }
-//            print("HERE IS THE CONVERTED STRING")
-//            print(convertedString)
         }
         task.resume()
     }

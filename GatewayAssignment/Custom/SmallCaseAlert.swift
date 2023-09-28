@@ -13,23 +13,28 @@ class SmallCaseAlert: UIViewController {
     let containerView = SmallCaseContainerView()
     let titleLabel = SmallCaseTitleLabel(textAlignment: .center, fontSize: 18)
     let messageLabel = SmallCaseBodyLabel(textAlignment: .left)
+    let secondaryMessageLabel = SmallCaseBodyLabel(textAlignment: .left)
     let actionButton = SmallCaseButton(backGroundColor: .green.withAlphaComponent(0.5), title: "OK")
     let copyButton = SmallCaseButton(backGroundColor: .yellow.withAlphaComponent(0.5), title: "Copy")
 
     var alertTitle: String?
     var message: String?
     var isCopyAllowed: Bool = false
+    var isJSONPresent: Bool = false
     var copyText: String = ""
+    var heightOfContainer: CGFloat = 0
     
     let padding: CGFloat = 20
     
     
-    init(alertTitle: String, message: String, isCopyAllowed : Bool, copyText: String) {
+    init(alertTitle: String, message: String, isCopyAllowed : Bool, isJSONPresent: Bool, copyText: String, heightOfContainer: CGFloat) {
         super.init(nibName: nil, bundle: nil)
         self.alertTitle = alertTitle
         self.message = message
         self.isCopyAllowed = isCopyAllowed
+        self.isJSONPresent = isJSONPresent
         self.copyText = copyText
+        self.heightOfContainer = heightOfContainer
     }
     
     required init?(coder: NSCoder) {
@@ -42,7 +47,6 @@ class SmallCaseAlert: UIViewController {
         configureUI()
     }
     
-    
     func configureUI() {
         configureContainer()
         configureTitleLabel()
@@ -51,14 +55,17 @@ class SmallCaseAlert: UIViewController {
             configureCopyButton()
         }
         configureBodyLabel()
+        if isJSONPresent {
+            configureSecondaryMessageLabel()
+        }
     }
     
     func configureContainer() {
         view.addSubview(containerView)
-        containerView.pinTop(withPadding: 150)
-        containerView.pinBottom(withPadding: -150)
+        containerView.constrainHeight(equalTo: heightOfContainer)
         containerView.constrainWidth(equalTo: 300)
         containerView.centerX()
+        containerView.centerY()
         containerView.backgroundColor = .white
     }
     
@@ -101,6 +108,14 @@ class SmallCaseAlert: UIViewController {
         messageLabel.pin(edges: .leading(padding: 10), .trailing(padding: -10))
     }
     
+    func configureSecondaryMessageLabel() {
+        containerView.addSubview(secondaryMessageLabel)
+        secondaryMessageLabel.text = copyText ?? "Unable to complete request"
+        secondaryMessageLabel.numberOfLines = 0
+        secondaryMessageLabel.pinTopToBottom(of: messageLabel, withSpacing: 20)
+        secondaryMessageLabel.pin(edges: .leading(padding: 10), .trailing(padding: -10))
+    }
+    
     @objc func dismissVC() {
         dismiss(animated: true)
     }
@@ -109,6 +124,5 @@ class SmallCaseAlert: UIViewController {
         ToastBasic.make(with: ToastBasic.Configuration(backgroundColor: .purple.withAlphaComponent(0.6), htmlText: nil, text: "successfully copied", font: .systemFont(ofSize: 16), textColor: .white, borderConfig: nil)).show(at: .bottom, offset: nil, duration: 1.2, completion: nil)
         UIPasteboard.general.string = copyText
     }
-   
 
 }

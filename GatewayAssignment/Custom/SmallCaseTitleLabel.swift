@@ -25,7 +25,8 @@ class SmallCaseTitleLabel: UILabel {
     }
     
     private func configure() {
-        textColor = .label
+        textColor = .black
+        font = UIFont(name: "Roboto-Bold", size: 14)
         adjustsFontSizeToFitWidth = true
         minimumScaleFactor = 0.9
         lineBreakMode = .byTruncatingTail

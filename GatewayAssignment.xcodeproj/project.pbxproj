@@ -14,7 +14,6 @@
 		09362C5A2AC41E3500965D79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09362C582AC41E3500965D79 /* LaunchScreen.storyboard */; };
 		09362C662AC4200D00965D79 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09362C652AC4200D00965D79 /* UIView+Constraints.swift */; };
 		09362C682AC4203600965D79 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09362C672AC4203600965D79 /* UIView+Ext.swift */; };
-		09D1C53C2AC46D7D004E5EAD /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D1C53B2AC46D7D004E5EAD /* Person.swift */; };
 		09D1C53F2AC46DBF004E5EAD /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D1C53E2AC46DBF004E5EAD /* MainViewModel.swift */; };
 		09D1C5422AC471BD004E5EAD /* SmallCaseAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D1C5412AC471BD004E5EAD /* SmallCaseAlert.swift */; };
 		09D1C5442AC4726A004E5EAD /* SmallCaseContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D1C5432AC4726A004E5EAD /* SmallCaseContainerView.swift */; };
@@ -29,7 +28,7 @@
 		09D1C55D2AC4B4E6004E5EAD /* ToastViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D1C55C2AC4B4E6004E5EAD /* ToastViewProtocol.swift */; };
 		09D1C55F2AC4B509004E5EAD /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D1C55E2AC4B509004E5EAD /* ToastView.swift */; };
 		09D1C5612AC4B6A0004E5EAD /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D1C5602AC4B6A0004E5EAD /* String+Ext.swift */; };
-		09D1C5632AC4B6B3004E5EAD /* Data+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D1C5622AC4B6B3004E5EAD /* Data+Ext.swift */; };
+		09D1C5652AC551A0004E5EAD /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09D1C5642AC551A0004E5EAD /* Roboto-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,7 +41,6 @@
 		09362C5B2AC41E3500965D79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09362C652AC4200D00965D79 /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		09362C672AC4203600965D79 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
-		09D1C53B2AC46D7D004E5EAD /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		09D1C53E2AC46DBF004E5EAD /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		09D1C5412AC471BD004E5EAD /* SmallCaseAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallCaseAlert.swift; sourceTree = "<group>"; };
 		09D1C5432AC4726A004E5EAD /* SmallCaseContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallCaseContainerView.swift; sourceTree = "<group>"; };
@@ -57,7 +55,7 @@
 		09D1C55C2AC4B4E6004E5EAD /* ToastViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastViewProtocol.swift; sourceTree = "<group>"; };
 		09D1C55E2AC4B509004E5EAD /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		09D1C5602AC4B6A0004E5EAD /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
-		09D1C5622AC4B6B3004E5EAD /* Data+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Ext.swift"; sourceTree = "<group>"; };
+		09D1C5642AC551A0004E5EAD /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +93,6 @@
 				09D1C5492AC4734E004E5EAD /* Fonts */,
 				09D1C5402AC471AB004E5EAD /* Custom */,
 				09D1C53D2AC46DAE004E5EAD /* ViewModel */,
-				09D1C53A2AC46D69004E5EAD /* Model */,
 				09362C642AC41FFB00965D79 /* Extensions */,
 				09362C612AC41F2200965D79 /* Core */,
 				09362C632AC41F6000965D79 /* ViewControllers */,
@@ -138,17 +135,8 @@
 				09362C652AC4200D00965D79 /* UIView+Constraints.swift */,
 				09362C672AC4203600965D79 /* UIView+Ext.swift */,
 				09D1C5602AC4B6A0004E5EAD /* String+Ext.swift */,
-				09D1C5622AC4B6B3004E5EAD /* Data+Ext.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		09D1C53A2AC46D69004E5EAD /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				09D1C53B2AC46D7D004E5EAD /* Person.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		09D1C53D2AC46DAE004E5EAD /* ViewModel */ = {
@@ -175,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				09D1C54A2AC4735B004E5EAD /* Roboto-Regular.ttf */,
+				09D1C5642AC551A0004E5EAD /* Roboto-Bold.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -258,6 +247,7 @@
 			files = (
 				09D1C54B2AC4735B004E5EAD /* Roboto-Regular.ttf in Resources */,
 				09362C5A2AC41E3500965D79 /* LaunchScreen.storyboard in Resources */,
+				09D1C5652AC551A0004E5EAD /* Roboto-Bold.ttf in Resources */,
 				09362C572AC41E3500965D79 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -269,7 +259,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				09D1C53C2AC46D7D004E5EAD /* Person.swift in Sources */,
 				09D1C55D2AC4B4E6004E5EAD /* ToastViewProtocol.swift in Sources */,
 				09D1C54D2AC47707004E5EAD /* SmallCaseButton.swift in Sources */,
 				09362C522AC41E3300965D79 /* ViewController.swift in Sources */,
@@ -280,7 +269,6 @@
 				09D1C5532AC4A8BB004E5EAD /* ErrorMessage.swift in Sources */,
 				09D1C5462AC472B6004E5EAD /* SmallCaseTitleLabel.swift in Sources */,
 				09D1C55B2AC4AA56004E5EAD /* LoadingVC.swift in Sources */,
-				09D1C5632AC4B6B3004E5EAD /* Data+Ext.swift in Sources */,
 				09D1C5482AC472F1004E5EAD /* SmallCaseBodyLabel.swift in Sources */,
 				09D1C5422AC471BD004E5EAD /* SmallCaseAlert.swift in Sources */,
 				09D1C5612AC4B6A0004E5EAD /* String+Ext.swift in Sources */,

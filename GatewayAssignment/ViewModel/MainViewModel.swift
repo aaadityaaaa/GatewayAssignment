@@ -39,11 +39,9 @@ class MainViewModel: NSObject, ASWebAuthenticationPresentationContextProviding {
     func fetchData(view: LoadingVC, completionHandler: @escaping (_ output: String) -> Void) {
         view.showLoadingView()
         networkingManager.getObject { [weak self] result in
-            guard let self = self else {return}
             view.dismissLoadingView()
             switch result {
             case .success(let response):
-                print("success on getting response \(response)")
                 completionHandler(response)
             case .failure(let error):
                 print("failed to get response \(error)")
@@ -51,13 +49,64 @@ class MainViewModel: NSObject, ASWebAuthenticationPresentationContextProviding {
         }
     }
     
-    func nsdataToJSON(data: Data) -> AnyObject? {
+    func percentEncodeJSON() {
+        let jsonObject: [String: Any] = [
+            "name": "Aaditya",
+            "age": 30
+        ]
         do {
-            return try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as AnyObject
-        } catch let myJSONError {
-            print(myJSONError)
+            let jsonData = try JSONSerialization.data(withJSONObject: jsonObject, options: [])
+            if let jsonString = String(data: jsonData, encoding: .utf8) {
+                // Now you have the JSON string
+                print("ADD: json string -- " + jsonString)
+                if let encodedJSONString = jsonString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+                        // Now you have the URL-encoded JSON string
+                        print("ADD: ENCODED json string -- " + encodedJSONString)
+                    
+                    let baseUrlString = "sc-assignment://home/redirect?"
+                    var components = URLComponents(string: baseUrlString)
+
+                    if let encodedJSONString = jsonString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+                        let queryItem1 = URLQueryItem(name: "status", value: "Gateway-2023")
+                        let queryItem2 = URLQueryItem(name: "code", value: "200")
+                        let queryItem3 = URLQueryItem(name: "data", value: encodedJSONString)
+                        components?.queryItems = [queryItem1, queryItem2, queryItem3]
+                    }
+                    if let url = components?.url {
+                        // Use the URL with the JSON parameter
+                        print("ADD: ABSOLUTE FINAL URL STRING IS -- " + url.absoluteString)
+                    }
+                    }
+            }
+        } catch {
+            print("Error encoding JSON: \(error)")
         }
-        return nil
+        
+    }
+    
+    func percentDecodeJSON(urlString: String) -> String {
+        let urlString = urlString
+        if let dataParameter = urlString.split(separator: "&").first(where: { $0.contains("data=") }) {
+            let encodedJSONString = dataParameter.replacingOccurrences(of: "data=", with: "")
+            
+            if let decodedJSONString = encodedJSONString.removingPercentEncoding {
+                
+                print("THIS IS THE PERCENT decoded JSON -  " + decodedJSONString)
+                
+                if let secondTime = decodedJSONString.removingPercentEncoding {
+                    print("THIS IS THE SECOND TIME decoded JSON -  " + secondTime)
+                    if let json = try? JSONSerialization.jsonObject(with: Data(secondTime.utf8), options: .mutableContainers),
+                       let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted) {
+                        print(String(decoding: jsonData, as: UTF8.self))
+                        return String(decoding: jsonData, as: UTF8.self)
+                    } else {
+                        print("json data malformed")
+                    }
+                }
+            }
+        }
+        return ""
     }
 }
 
+//sc-assignment://home/redirect?status=Gateway-2023&code=200&data=%257B%2522name%2522:%2522Aaditya%2522,%2522age%2522:30%257D

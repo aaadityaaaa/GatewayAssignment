@@ -38,6 +38,7 @@ class ViewController: LoadingVC {
         super.viewDidLoad()
         view.backgroundColor = UIColor.systemFill
         setupViews()
+        viewModel.percentEncodeJSON()
     }
     
     private func setupViews() {
@@ -53,7 +54,6 @@ class ViewController: LoadingVC {
         callApiButton.pinTopToBottom(of: appBrowserButton, withSpacing: 20)
         callApiButton.pinLeading(withPadding: 50)
         callApiButton.pinTrailing(withPadding: -50)
-        
     }
 
 }
@@ -65,35 +65,30 @@ extension ViewController {
             print("SO WE ARE GETTING THE URL INSIDE OUR VIEW CONTROLLER NOW \(url)")
             let statusString = url.absoluteString.slice(from: "status=", to: "&")
             let codeString = url.absoluteString.slice(from: "code=", to: "&")
-            let dataString = url.absoluteString.components(separatedBy: "=").last!
-            print("the data is \(Data(dataString.utf8)))")
-            let json = self.viewModel.nsdataToJSON(data: Data(dataString.utf8))
-            print("HERE IS THE JSON - \(json)")
-            var decoded: Person?
-//            guard let decoded = try? JSONDecoder().decode(Person.self, from: Data(dataString.utf8)) else {
-//                print("AD:: we returned")
-//                return
-//
-//            }
-           
-//            self.presentSmallCaseAlertOnMainThread(title: statusString ?? "ERROR", message: codeString ?? "ERROR" , buttonTitle: "Ok", isCopyAllowed: false, copyText: "")
-
-
+            self.presentSmallCaseAlertOnMainThread(
+                title: "Status : " + (statusString ?? "ERROR"),
+                message: "Code : " + (codeString ?? "ERROR"),
+                buttonTitle: "Ok",
+                isCopyAllowed: false,
+                isJSONPresent: true,
+                copyText: self.viewModel.percentDecodeJSON(urlString: url.absoluteString),
+                heightOfContainer: 250
+            )
         }
     }
     
     @objc private func callApiButtonTapped(_ sender: UIButton) {
         viewModel.fetchData(view: self) { output in
-            self.presentSmallCaseAlertOnMainThread(title: "JSON DATA", message: output, buttonTitle: "Ok", isCopyAllowed: true, copyText: output)
+            self.presentSmallCaseAlertOnMainThread(title: "JSON DATA", message: output, buttonTitle: "Ok", isCopyAllowed: true, isJSONPresent: false, copyText: output, heightOfContainer: 550)
         }
     }
     
 }
 
 extension UIViewController {
-    func presentSmallCaseAlertOnMainThread(title: String, message: String, buttonTitle: String, isCopyAllowed: Bool, copyText: String) {
+    func presentSmallCaseAlertOnMainThread(title: String, message: String, buttonTitle: String, isCopyAllowed: Bool, isJSONPresent: Bool, copyText: String, heightOfContainer: CGFloat) {
         DispatchQueue.main.async {
-            let alertVC = SmallCaseAlert(alertTitle: title, message: message, isCopyAllowed: isCopyAllowed, copyText: copyText)
+            let alertVC = SmallCaseAlert(alertTitle: title, message: message, isCopyAllowed: isCopyAllowed, isJSONPresent: isJSONPresent, copyText: copyText, heightOfContainer: heightOfContainer)
             alertVC.modalPresentationStyle = .overFullScreen
             alertVC.modalTransitionStyle = .crossDissolve
             self.navigationController?.present(alertVC, animated: true)
@@ -101,7 +96,3 @@ extension UIViewController {
         
     }
 }
-
-//sc-assignment://home/redirect?status=Gateway-2023&code=200&data={\n \"name\": \"Aaditya\",\n \"age\": 22,\n }
-
-//sc-assignment://home/redirect?status=Gateway-2023&code=200&data={"id":38,"name":"Festival 2"}

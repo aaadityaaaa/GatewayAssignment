@@ -25,7 +25,7 @@ class SmallCaseBodyLabel: UILabel {
     
     private func configure() {
         textColor = .black
-        font = UIFont(name: "Roboto-Regular", size: 14)
+        font = UIFont(name: "Roboto-Bold", size: 14)
         adjustsFontForContentSizeCategory = true
         adjustsFontSizeToFitWidth = true
         minimumScaleFactor = 0.75
